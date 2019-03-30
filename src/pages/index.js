@@ -12,7 +12,11 @@ export default ({ data }) => {
       <SEO title="Bottle & Drinks" keywords={[`Drinks`, `Wine`, `Vodka`, `Mocktails`]} />
       <CarouselPage />
       <PopularDrinks />
+<<<<<<< HEAD
       <h1>Dev Version 2</h1>
+=======
+      <h1>Pra Version</h1>
+>>>>>>> updated pra version
       <h1>{myData.title}</h1>
       <h3>{myData.subtitle}</h3>
     </Blayout>
