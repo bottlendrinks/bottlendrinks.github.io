@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Bottle & Drinks',
     description: 'About Bottle and Drinks',
-    author: 'rteja91'
+    author: 'iambottle'
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorsYaml'

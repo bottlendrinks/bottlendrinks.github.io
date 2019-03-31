@@ -1,6 +1,6 @@
 ---
 title: Example Post 2
-author: Donald Duck
+author: iambottle
 date: 2017-10-19
 ---
 
