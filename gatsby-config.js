@@ -37,6 +37,16 @@ module.exports = {
         head: false,
       }
     },
+    {
+      resolve: 'gatsby-source-s3',
+      options: {
+        aws: {
+          accessKeyId: 'AKIA3YMAK6HSSUX4GXMS',
+          secretAccessKey: "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",
+        },
+        buckets: ['bottlendrinks'],
+      },
+    },
     'gatsby-transformer-remark',
     'gatsby-transformer-json',
     'gatsby-transformer-yaml',
