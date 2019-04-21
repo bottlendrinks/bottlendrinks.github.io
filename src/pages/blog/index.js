@@ -4,42 +4,36 @@ import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import colors from '../../utils/colors';
 import { css } from 'react-emotion';
+import './blog.css';
 import Blayout from '../../components/Blayout/BLayout';
+import BlogCard from '../../components/BlogCard/BlogCard';
+import { MDBContainer, MDBRow, } from "mdbreact";
 
-const listStyle = css`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-`;
+
 
 const BlogIndex = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark;
   return (
     <Blayout>
-      <div bg={colors.primary}>
-        <div
-          width={[1, 1, 1 / 2]}
-          m={['3.5rem 0 0 0', '3.5rem 0 0 0', '3.5rem auto 0 auto']}
-          px={[3, 3, 0]}
-          color={colors.secondary}
-        >
-          <h1>Blog</h1>
-          <ul className={listStyle}>
-            {posts
-              .filter(post => post.node.frontmatter.title.length > 0)
-              .map(({ node: post }, index) => {
-                return (
-                  <li key={post.id}>
-                    <Link to={post.fields.slug}>
-                      <h3>{post.frontmatter.title}</h3>
-                    </Link>
-                    <p>{post.excerpt}</p>
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
-      </div>
+      <MDBContainer className="mt-5 mb-5 text-center">
+
+
+        <h1 className="text-center text-danger font-weight-bold">Blog</h1>
+
+        <MDBRow>
+          {posts
+            .filter(post => post.node.frontmatter.title.length > 0)
+            .map(({ node: post }, index) => {
+              return (
+                <BlogCard blogimg={post.frontmatter.blogimage ? post.frontmatter.blogimage : ""} key={post.id} title={post.frontmatter.title} excerpt={post.excerpt} urlslug={post.fields.slug} />
+
+              );
+            })}
+        </MDBRow>
+
+
+
+      </MDBContainer>
     </Blayout>
   );
 };
@@ -52,6 +46,7 @@ export const query = graphql`
           excerpt(pruneLength: 250)
           id
           frontmatter {
+            blogimage
             title
             date(formatString: "MMMM DD, YYYY")
           }

@@ -1,10 +1,6 @@
 import React from "react";
 import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask } from
     "mdbreact";
-import image1 from "../../assets/images/banner/1.webp"
-import image2 from "../../assets/images/banner/2.webp"
-import image3 from "../../assets/images/banner/3.webp"
-import image4 from "../../assets/images/banner/4.webp"
 import { StaticQuery, graphql } from 'gatsby';
 
 const CarouselPage = (props) => {
@@ -14,7 +10,7 @@ const CarouselPage = (props) => {
         <MDBCarousel activeItem={1} length={imgData.length - 1} className="z-depth-1 w-100">
             <MDBCarouselInner>
                 {imgData.map((imgKey, index) => (
-                    <MDBCarouselItem itemId={index}>
+                    <MDBCarouselItem key={index} itemId={index}>
                         <MDBView>
                             <img className="d-block w-100" src={"https://bottlendrinks.s3.amazonaws.com/" + imgKey} alt="Bottle & Drinks " />
                             <MDBMask overlay="black-slight" />
