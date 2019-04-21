@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Bottle & Drinks',
     description: 'About Bottle and Drinks',
-    author: 'rteja91'
+    author: 'iambottle'
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorsYaml'
@@ -33,8 +33,19 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: ``
+        trackingId: `UA-137359756-1`,
+        head: false,
       }
+    },
+    {
+      resolve: 'gatsby-source-s3',
+      options: {
+        aws: {
+          accessKeyId: 'AKIA3YMAK6HSSUX4GXMS',
+          secretAccessKey: "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",
+        },
+        buckets: ['bottlendrinks'],
+      },
     },
     'gatsby-transformer-remark',
     'gatsby-transformer-json',

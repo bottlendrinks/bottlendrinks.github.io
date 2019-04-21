@@ -1,42 +1,47 @@
 import React from "react";
 import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask } from
     "mdbreact";
-import image1 from "../../assets/images/banner/1.webp"
-import image2 from "../../assets/images/banner/2.webp"
-import image3 from "../../assets/images/banner/3.webp"
-import image4 from "../../assets/images/banner/4.webp"
+import { StaticQuery, graphql } from 'gatsby';
 
-const CarouselPage = () => {
+const CarouselPage = (props) => {
+    const imgData = props.data.allS3Object.edges.map(imgnode => imgnode.node.Key);
+    console.log(imgData);
     return (
-        <MDBCarousel activeItem={1} length={4} className="z-depth-1 w-100">
+        <MDBCarousel activeItem={1} length={imgData.length - 1} className="z-depth-1 w-100">
             <MDBCarouselInner>
-                <MDBCarouselItem itemId="1">
-                    <MDBView>
-                        <img className="d-block w-100" src={image1} alt="First slide" />
-                        <MDBMask overlay="black-slight" />
-                    </MDBView>
-                </MDBCarouselItem>
-                <MDBCarouselItem itemId="2">
-                    <MDBView>
-                        <img className="d-block w-100" src={image2} alt="Second slide" />
-                        <MDBMask overlay="black-slight" />
-                    </MDBView>
-                </MDBCarouselItem>
-                <MDBCarouselItem itemId="3">
-                    <MDBView>
-                        <img className="d-block w-100" src={image3} alt="Mattonit's item" />
-                        <MDBMask overlay="black-slight" />
-                    </MDBView>
-                </MDBCarouselItem>
-                <MDBCarouselItem itemId="4">
-                    <MDBView>
-                        <img className="d-block w-100" src={image4} alt="Mattonit's item" />
-                        <MDBMask overlay="black-slight" />
-                    </MDBView>
-                </MDBCarouselItem>
+                {imgData.map((imgKey, index) => (
+                    <MDBCarouselItem key={index} itemId={index}>
+                        <MDBView>
+                            <img className="d-block w-100" src={"https://bottlendrinks.s3.amazonaws.com/" + imgKey} alt="Bottle & Drinks " />
+                            <MDBMask overlay="black-slight" />
+                        </MDBView>
+                    </MDBCarouselItem>
+                ))
+                }
+
+
             </MDBCarouselInner>
         </MDBCarousel>
     );
 }
 
-export default CarouselPage;
+
+
+const bannerQuery = graphql`
+  query {
+    allS3Object(filter:{Url:{regex:"/banner/"}}){
+    totalCount
+    edges {
+      node{
+        Key
+        Url
+      }}}
+  }
+`;
+
+//export default CarouselPage;
+export default props => (<StaticQuery
+    query={bannerQuery}
+    render={data => (<CarouselPage data={data} {...props} />)}
+/>);
+

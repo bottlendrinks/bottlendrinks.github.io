@@ -1,0 +1,18 @@
+h3{
+    color : #d62229 !important;
+    font-weight: 600;
+}
+
+h4 {
+    color : goldenrod;
+    font-weight: 500;
+}
+
+.blog-post{
+    font-size: 24px;
+}
+
+.blog-post-img {
+    margin: 0 auto;
+    max-height: 350px !important;
+}

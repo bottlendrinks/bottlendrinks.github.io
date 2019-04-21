@@ -1,18 +1,18 @@
 import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
-
-const BlogCard = () => {
+import './BlogCard.css';
+const BlogCard = (props) => {
     return (
-        <MDBCol>
-            <MDBCard style={{ width: "22rem" }}>
-                <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
+
+        <MDBCol lg="4" md="6" className="mb-lg-0 mb-4 mt-5">
+            <MDBCard >
+                <MDBCardImage className="img-fluid bcard-img" src={props.blogimg} waves />
                 <MDBCardBody>
-                    <MDBCardTitle>Card title</MDBCardTitle>
-                    <MDBCardText>
-                        Some quick example text to build on the card title and make
-                        up the bulk of the card&apos;s content.
-          </MDBCardText>
-                    <MDBBtn href="#">MDBBtn</MDBBtn>
+                    <h3 className="text-center">{props.title}</h3>
+                    <MDBCardText className="text-justify">
+                        {props.excerpt}
+                    </MDBCardText>
+                    <MDBBtn href={props.urlslug} outline color="danger">More</MDBBtn>
                 </MDBCardBody>
             </MDBCard>
         </MDBCol>

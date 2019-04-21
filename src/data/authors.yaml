@@ -1,3 +1,5 @@
-- id: Donald Duck
-  bio: "He is a duck"
-  avatar: '../assets/images/duck_avatar.jpeg'
+- id: iambottle
+  name: Bottle Bot
+  authorimage: https://s3.us-east-2.amazonaws.com/bottlendrinks/images/bottleicon.jpg
+  bio: "BottleBot manages the content on bottlendrinks website"
+  avatar: '../assets/images/bottleicon.jpg'
